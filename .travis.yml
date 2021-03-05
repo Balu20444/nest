@@ -8,12 +8,12 @@ script:
   - npm run build
 
 after_success:
- # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker --version  # document the version travis is using
   - docker build -t Innablr-nodejs-sample .
-  - docker login -u balu2044 -p @Balu2044
+ # - docker login -u balu2044 -p @Balu2044
   - docker images
-  - docker tag Innablr-nodejs-sample balu2044/Innablr-nodejs-sample 
+  - docker tag Innablr-nodejs-sample balu2044/innablrdemo:v1
   - docker push balu2044/innablrdemo:v1
 #deploy:
 #  provider: pages
