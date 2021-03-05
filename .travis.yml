@@ -10,11 +10,11 @@ script:
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker --version  # document the version travis is using
-  - docker build -t Innablr-nodejs-sample .
+  - docker build -t innablr-nodejs-sample .
  # - docker login -u balu2044 -p @Balu2044
   - docker images
-  - docker tag Innablr-nodejs-sample balu2044/innablrdemo:v1
-  - docker push balu2044/innablrdemo:v1
+  - docker tag innablr-nodejs-sample $DOCKER_USERNAME/innablrdemo
+  - docker push $DOCKER_USERNAME/innablrdemo
 #deploy:
 #  provider: pages
 #  skip_cleanup: true
