@@ -7,6 +7,13 @@ cache:
 script:
   - npm run build
 
+after_success:
+  - docker --version  # document the version travis is using
+  - docker build -t Innablr-nodejs-sample .
+  - docker login -u "$DOCKER_USERNAME" "$DOCKER_PASSWORD"
+  - docker images
+  - docker tag Innablr-nodejs-sample $DOCKER_USERNAME/Innablr-nodejs-sample
+  - docker push $DOCKER_USERNAME/Innablr-nodejs-sample  
 #deploy:
 #  provider: pages
 #  skip_cleanup: true
